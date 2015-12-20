@@ -1,0 +1,11 @@
+exportPattern("^[[:alpha:]]+")
+import(glasso)
+import(capushe)
+import(mvtnorm)
+importFrom(igraph, graph.adjacency)
+importFrom(GGMselect, simulateGraph)
+
+## export methods
+export(shockSelect)
+export(simulateBlockDiagNetwork)
+export(networkInferenceGlassoBIC)

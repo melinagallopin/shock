@@ -1,0 +1,81 @@
+load data to test
+data(dataTest)
+getwd()
+setwd("/Users/melinagallopin/Documents/package/shock/man")
+setwd("/Users/melinagallopin/Documents/package/shock/data")
+load("dataTest.rda")
+myLABELS <- thresholdAbsSPath(dataTest)$partitionList
+setwd("/Users/melinagallopin/Documents/package/shock/R")
+list.files()
+load("computeLoglikeFromPartition.R")
+setwd("/Users/melinagallopin/Documents/package/shock/R")
+source("computeLoglikeFromPartition.R")
+source("performCGL.R")
+source("performNetworkInference.R")
+source("simulateNetworkBlockFromLabelsIndex.R")
+source("thresholdAbsSPath.R")
+getwd()
+rm(list=ls())
+setwd("/Users/melinagallopin/Documents/package/shock/data")
+load("dataTest.rda")
+list.files()
+load.image("dataTest.rda")
+load("dataTest.rda")
+list.files()
+data(dataTest)
+setwd("/Users/melinagallopin/Documents/package/ICAL/data")
+load("expressions.rda")
+list.files()
+load("expression.rda")
+list.files()
+ls()
+rm(list=ls())
+getwd()
+setwd("/Users/melinagallopin/Documents/package/shock/data")
+load("dataTest.rda")
+ls()
+str(dataTest)
+myLABELS <- thresholdAbsSPath(dataTest)$partitionList
+data(dataTest)
+setwd("/Users/melinagallopin/Documents/package/shock/R")
+source("computeLoglikeFromPartition.R")
+source("performCGL.R")
+source("performNetworkInference.R")
+source("simulateNetworkBlockFromLabelsIndex.R")
+source("thresholdAbsSPath.R")
+myLABELS <- thresholdAbsSPath(dataTest)$partitionList
+library(igraph)
+myLABELS <- thresholdAbsSPath(dataTest)$partitionList
+maxCC <- unlist(lapply(myLABELS, function(x) max(table(x))))
+library(mvtnorm)
+myLABELS <- thresholdAbsSPath(dataTest)$partitionList
+maxCC <- unlist(lapply(myLABELS, function(x) max(table(x))))
+myLOGmyDF <- lapply(myLABELS, function(x) computeLoglikeFromPartition(x,dataTest))
+myLOG <- unlist(lapply(myLOGmyDF, function(x) x$loglike))
+myDF <- unlist(lapply(myLOGmyDF, function(x) x$df))
+myDF.clean <- myDF[myLOG!="-Inf"]
+myLOG.clean <- myLOG[myLOG!="-Inf"]
+myLABELS.clean <- myLABELS[myLOG!="-Inf"]
+mat <- cbind(as.vector(myDF.clean[myDF.clean>0]), as.vector(myDF.clean[myDF.clean>0]), as.vector(myDF.clean[myDF.clean>0]), -as.vector(myLOG.clean[myDF.clean>0]))
+myDF.clean>0
+myDF.clean[myDF.clean>0]
+as.vector(myDF.clean[myDF.clean>0])
+myDF.clean
+myDF.clean <- myDF[myLOG!="-Inf"]
+myLOG.clean <- myLOG[myLOG!="-Inf"]
+myLABELS.clean <- myLABELS[myLOG!="-Inf"]
+myDF.clean
+myLABELS <- thresholdAbsSPath(dataTest)$partitionList
+myLABELS
+myLABELS <- thresholdAbsSPath(dataTest)$partitionList
+maxCC <- unlist(lapply(myLABELS, function(x) max(table(x))))
+myLOGmyDF <- lapply(myLABELS, function(x) computeLoglikeFromPartition(x,dataTest))
+myLOG <- unlist(lapply(myLOGmyDF, function(x) x$loglike))
+myDF <- unlist(lapply(myLOGmyDF, function(x) x$df))
+myLOG
+pkgname <- "shock"
+source(file.path(R.home("share"), "R", "examples-header.R"))
+options(warn = 1)
+library('shock')
+15000/44
+15000/30
