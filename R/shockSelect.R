@@ -16,7 +16,7 @@
 #  http://www.r-project.org/Licenses/
 
 
-shockSelect <- function(expdata){
+shockSelect <- function(expdata,maxBlockSize=50, detectDuplicates=FALSE){
   
   if(is.matrix(expdata) == FALSE & is.data.frame(expdata) == FALSE) 
     stop(paste(sQuote("expdata"), "must be a matrix"))
@@ -38,7 +38,7 @@ shockSelect <- function(expdata){
   p <- dim(expdata)[2]
 
   ## threshold of absS matrix
-  myPartition <- thresholdAbsSPath(expdata)$partitionList
+  myPartition <- thresholdAbsSPath(expdata,maxBlockSize, detectDuplicates)$partitionList
   #maxCC <- unlist(lapply(myPartition, function(x) max(x$csize)))
   resLogLike <- lapply(myPartition, function(x) computeLoglikeFromPartition(x$membership,expdata,x$csize))
   myLog <- unlist(lapply(resLogLike, function(x) x$loglike))
