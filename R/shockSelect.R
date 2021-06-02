@@ -36,12 +36,11 @@ shockSelect <- function(expdata){
   ## dimension of the dataset expdata
   n <- dim(expdata)[1]
   p <- dim(expdata)[2]
-  
-  
+
   ## threshold of absS matrix
   myPartition <- thresholdAbsSPath(expdata)$partitionList
-  maxCC <- unlist(lapply(myPartition, function(x) max(table(x))))
-  resLogLike <- lapply(myPartition, function(x) computeLoglikeFromPartition(x,expdata))
+  #maxCC <- unlist(lapply(myPartition, function(x) max(x$csize)))
+  resLogLike <- lapply(myPartition, function(x) computeLoglikeFromPartition(x$membership,expdata,x$csize))
   myLog <- unlist(lapply(resLogLike, function(x) x$loglike))
   myDf <- unlist(lapply(resLogLike, function(x) x$df))
   
@@ -52,7 +51,7 @@ shockSelect <- function(expdata){
   myLog.clean <- myLog[myLog!="-Inf"]
   myPartition.clean <- myPartition[myLog!="-Inf"]
   
-  ## we remove points with 0 degree of freedom 
+  ## we remove points with 0 degree of freedom
   mat <- cbind(as.vector(myDf.clean[myDf.clean>0]), as.vector(myDf.clean[myDf.clean>0]), as.vector(myDf.clean[myDf.clean>0]), -as.vector(myLog.clean[myDf.clean>0]))
   ResCapushe <- capushe(mat, n, psi.rlm="lm", pct=0.10)
   ## we collect the labels for each selected partition
@@ -61,6 +60,3 @@ shockSelect <- function(expdata){
   
   return(list(SHDJlabels = SHDJlabels, SHRRlabels = SHRRlabels, capusheOutput = ResCapushe ))
 }
-
-
-
